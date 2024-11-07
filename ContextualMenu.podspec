@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'Your Name' => 'youremail@example.com' }
   s.source       = { :git => 'https://github.com/TranHoaiHung/ContextualMenu.git', :tag => s.version.to_s }
+
   s.platform     = :ios, '14.0'
-  s.platform     = :ios, :catalyst => '14.0'
 
   s.source_files = 'Sources/ContextualMenu/**/*.{swift}'
 
