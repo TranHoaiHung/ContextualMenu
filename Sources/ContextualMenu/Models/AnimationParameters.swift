@@ -15,7 +15,7 @@ public struct AnimationParameters {
     public let curve: UIView.AnimationOptions
 
     public init(
-        duration: TimeInterval = 0.3,
+        duration: TimeInterval = 0.5,
         damping: CGFloat = 1,
         initialSpringVelocity: CGFloat = 4,
         curve: UIView.AnimationOptions = .curveEaseIn

@@ -39,6 +39,7 @@ public final class MenuView: UIView {
         clipsToBounds = true
         layer.cornerRadius = style.cornerRadius
         backgroundColor = style.backgroundColor
+        alpha = 0.0 // Set initial alpha to 0 for smooth animation
 
         for child in menu.children {
             let elementView = MenuElementView(element: child, style: style.element, delegate: self)
@@ -46,6 +47,7 @@ public final class MenuView: UIView {
         }
 
         addSubview(stackView)
+        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -54,13 +56,19 @@ public final class MenuView: UIView {
             stackView.widthAnchor.constraint(equalToConstant: style.width),
             stackView.heightAnchor.constraint(equalToConstant: CGFloat(menu.children.count) * style.element.height)
         ])
+
+        // Animate the appearance of the menu view to reduce flicker
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.25) {
+                self.alpha = 1.0
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 extension MenuView: MenuElementViewDelegate {
     func menuElementViewTapped(menuElementView: MenuElementView) {
         delegate?.dismissMenuView(menuView: self, uponTapping: menuElementView.element)
